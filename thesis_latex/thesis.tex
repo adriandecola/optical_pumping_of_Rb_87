@@ -1,0 +1,111 @@
+% MODEL THESIS FILE
+% This is the file to typeset. It then imports the other .tex files to be typeset.
+
+\documentclass[12pt,oneside, reqno]{amsbook}
+\usepackage{epsfig}
+\usepackage{setspace} 
+\usepackage{minted}
+\setstretch{1.5}
+
+
+%shortcut commands
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\Zeta}{\mathrm{Z}}
+
+
+%this sets the margins to 1" on all sides -- the amsbook gives giant margins.
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
+
+
+% above is the preamble
+
+
+%\renewcommand{\baselinestretch}{2} %Use this for double-spacing.
+\usepackage{graphicx} % You need graphicx for importing graphics files.
+
+\numberwithin{equation}{chapter}
+% This numbers the equations within each chapter as 1.1, 1.2, 2.1, etc.
+\numberwithin{figure}{chapter}
+% This does the same for the figures.
+
+\theoremstyle{plain} % This is the default style.
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+% [chapter] causes the above to be numbered within each chapter as 1.1, 1.2, ...
+% If you omit [chapter], the numbers will be 1, 2, ...
+
+\theoremstyle{definition}
+\newtheorem*{dfn}{Definition}
+% The asterisk suppresses the numbering of definitions.
+
+\theoremstyle{remark}
+\newtheorem{ex}{Example}
+\newtheorem*{rem}{Remark}
+% The asterisk suppresses the numbering of remarks.
+
+\graphicspath{{converted_graphics/}}
+
+
+
+
+
+\begin{document}
+
+\frontmatter % Pages here will be numbered with Roman numerals.
+\title[]{Optical Pumping of Rubidium Atoms to form Bose-Einstein Condensation}
+\author{Adrian Miguel deCola}
+\address{Department of Physics and Astronomy \\Bates College\\Lewiston, ME 04240}
+\date{April 17, 2023}
+\maketitle
+
+% Create real cover page.
+\newpage
+\thispagestyle{empty} 			% Suppress numbering of this page.
+\include{cover}       			% Save the file cover.tex to the same folder as thesis.tex.
+\setcounter{page}{2}
+
+
+
+
+\tableofcontents
+% This creates a file called thesis.toc.
+
+% \listoftables
+% \listoffigures
+% Use the above if you have tables/figures and want them listed in the front.
+
+% The following files should be in the same folder as thesis.tex.
+
+
+
+\include{ack}     			% Acknowledgments
+
+
+
+\mainmatter % Pages here will be numbered 1, 2, 3, and so on .
+
+
+\include{intro}   			% Introduction 
+
+% The following files should also be in the same folder as thesis.tex.
+\include{chapter1}
+\include{chapter2} % Use the same command to add more chapters or sections
+\include{chapter3}
+\include{conclusion}
+%\include{helpful_latex}
+
+\backmatter
+\include{appendixA}			% Use \include{appendixB} to include another appendix.
+
+\bibliographystyle{unsrt} %\bibliographystyle{plain} will put your references in alphabetical order by first author
+\bibliography{biblio}
+\end{document}
+	

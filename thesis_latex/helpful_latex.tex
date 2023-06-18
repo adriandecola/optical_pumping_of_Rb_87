@@ -1,0 +1,125 @@
+
+\section{Writing text in \LaTeX}
+You can write text in \LaTeX ~ as you would in any other word processing or typesetting software.  You can incorporate \textit{different} \textbf{varieties} of \textsl{typeface}.  What's really exciting about writing text in \LaTeX 
+~ is that it's very easy to incorporate weird symbols, like $\alpha$ or $\otimes$ or $\infty$ into your text.  Note that the weird symbols appear in between \$ signs -- this means that they occur in \textit{math mode}.
+
+You create a new paragraph just by putting in a blank line.  Leaving extra space or extra lines in between paragraphs won't change their spacing at all.  \LaTeX ~ will automatically indent your paragraphs, so you don't have to worry about indenting.
+
+\noindent You can, however prevent it from indenting your paragraphs if you'd like.  But that's getting a little ahead of ourselves.  
+
+\section{Writing equations in \LaTeX}
+It is beautifully easy to write equations, whether they occur inline with the text  $\Psi(x,t) = A e^{i(kx -\omega t)}$ or as a separate line
+\begin{equation}
+\Psi(x,t) =\sum_{n=1}^\infty c_n \psi_n(x) e^{-i E_n t/\hbar}.
+\end{equation}
+To continue a paragraph after an equation, make sure that there's no blank line between the equation and your next line of text.
+Equations that are in a separate line will be numbered, and it's easy to refer to Eq.~\ref{SE} by labelling your equations  
+\begin{equation}
+i\hbar\frac{\partial}{\partial t}\Psi(x,t) = \hat{H} \Psi(x,t). 
+\label{SE}
+\end{equation}
+
+Are you getting tired of writing begin\{eqnarray\} and end\{eqnarray\} yet?\footnote{Notice how I made a \} by putting a backslash in front of the symbol.  The curly brace has special meaning in \LaTeX, so if you want to make one, you have to let the program know that you want the symbol.}  You can simplify your life by defining abbreviated symbols for commands:
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\beq
+\langle x |\Psi(t)\rangle = \Psi(x,t).
+\eeq
+For simplicity, I'd suggest putting all of your new commands in a separate include file.
+
+When writing a derivation with multiple steps, it is often useful to use an equation array
+\begin{eqnarray}
+\int_0^{2\pi}\sin^2{x}dx & = &  \int_0^{2\pi}\frac{1}{2}\left(1-\cos{2x}\right)dx \nonumber \\
+& = & \left. \frac{1}{2}\left(x - \frac{\sin{2x}}{2}\right)\right|_0^{2\pi} \nonumber \\
+& = & \pi. \nonumber 
+\end{eqnarray}
+Note that you can suppress equation numbering, which is often desirable in derivations!
+
+
+The syntax for equation arrays is similar to the syntax for arrays within equations.  For example, 
+\beq
+\hat{H} = \left(\begin{array}{clcr}
+		\Delta & \Omega & 0\\
+		\Omega^*& 0 &\kappa \\
+		0& \kappa^*&-\Delta\\ 
+	\end{array}\right)
+\eeq
+
+There are many more complicated things you can do with equations, but this should be enough to get started! 
+
+\section{Tables, lists, etc... etc...}
+If you want to make a table, you'll need to specify the justification for each of the columns; \TeX will automatically calculate the column widths for you.  
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|r|l|}
+\hline
+Name & Age & Town & Time \\
+\hline
+Joe Schmoe & 23 &  Rumford & 1:04\\
+\hline
+Mary Q. Contrary & 44 & Yarmouth & 1:12 \\
+\hline
+Baxter Boulevard & 32 & Portland & 1:42 \\
+\hline
+Lass Plaice & 60 & Lewiston & 1:57 \\
+\hline
+\end{tabular}
+\caption{\label{raceresults}Not too many people showed up for the first, and probably last, annual Androscoggin swimming race.}
+\end{center}
+\end{table}
+
+You might also, for example, want to 
+
+\begin{enumerate}
+
+\item make lists
+
+\item number your lists
+
+\end{enumerate}
+
+\begin{itemize}
+
+\item use bullet points
+
+\item find better items to put in your bullet points
+
+\end{itemize}
+
+\section{Figures}
+
+Figures are probably the hardest thing to do.  In order for these figures to show up, the figure files must be in the same folder as thesis.tex and all of your chapters.  
+
+\begin{figure}[htbp] % float placement: (h)ere, page (t)op, page (b)ottom, other (p)age
+  \centering
+  % file name: C:/Users/home/Documents/Lily/Physics template/badfigure.eps
+  \includegraphics[width=2.67in,height=3.51in,keepaspectratio]{badfigure}
+  \caption{This is a very bad figure.}
+  \label{fig:badfigure}
+\end{figure}
+
+If you are using .eps files for your figures, you can use the epsfig package, which is included at the very beginning of thesis.tex.
+\begin{figure}[h]
+\begin{center}
+\epsfig{file=badfigure,height=8cm,width=12cm,angle=90}
+\end{center}
+\caption{A rescaled, stretched, and rotated bad figure.}
+\end{figure}
+
+\section{References}
+While you can directly write a bibliography at the end of your .tex file, using BibTeX gives you much more freedom~\cite{chang2006}.  The .bib file includes all of your references, but only the ones you actually cite~\cite{JelezkoPrivate, Inui, Ernst, Ta} will appear in the bibliography, and you can easily alphabetize them, have them come in order of reference, and so on and so forth.  Use BibTeX!
+%%stuff i might reuse
+
+Over a large number of states, this summations becomes well approximated by a continuous integral.
+\beq
+N = \int_0^{\infty}{g(\epsilon)\frac{1}{e^{(\epsilon_s-\mu) /kT}-1}}d\epsilon
+\eeq
+where $g(\epsilon)$ is the density of the states, or the number of particle states per unit energy, calculated by summing the total energy from each electron. This density of states is inaccurate for very low temperatures. 
+This integral yields the following
+To distinguish at which temperature this occurs, a critical temperature is defined, $T_C$. 
+
+https://physics.uwb.edu.pl/main/ptf/fizyka2000/bec/lascool4.html
+https://www.google.com/url?sa=i&url=https%3A%2F%2Fwiki.physics.udel.edu%2Fwiki_phys813%2Fimages%2F2%2F28%2FBec_phys813.pdf&psig=AOvVaw2ku55eOWoUnkiEHhS_ddV1&ust=1681673016045000&source=images&cd=vfe&ved=0CBIQjhxqFwoTCMjh3qfOrP4CFQAAAAAdAAAAABAT
+
+https://arxiv.org/ftp/physics/papers/0003/0003050.pdf
